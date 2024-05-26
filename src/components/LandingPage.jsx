@@ -1,7 +1,11 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
+// import { useHistory } from 'react-router-dom';
+// import { BrowserRouter as Router, useHistory } from 'react-router-dom';
 
 const user = {
     name: 'Tom Cook',
@@ -22,11 +26,18 @@ const userNavigation = [
     { name: 'Sign out', href: '#' },
 ]
 
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function LandingPage() {
+export default function LandingPage(history) {
+    // const history = useHistory();
+    const navigate = useNavigate();
+
+    const handleGetStarted = () => {
+        navigate('/form'); // Navigate to the '/form' route
+    };
     return (
         <div className="space-y-12 bg-gray-100 text-gray-800">
             <header className="p-4">
@@ -66,8 +77,7 @@ export default function LandingPage() {
                     <p className="px-8 mt-8 mb-12 text-lg">Instantly showcase your skills & achievements.
                         Seize opportunities with a polished portfolio.</p>
                     <div className="flex flex-wrap justify-center">
-                        <button type='button' className="px-8 py-3 m-2 text-lg font-semibold rounded cursor-pointer text-gray-50 bg-rose-600">Get started</button>
-                        <button className="px-8 py-3 m-2 text-lg border rounded text-gray-900 border-gray-300">Learn more</button>
+                        <button onClick={handleGetStarted} className="px-8 py-3 m-2 text-lg font-semibold rounded cursor-pointer text-gray-50 bg-rose-600">Get started</button>                        <button className="px-8 py-3 m-2 text-lg border rounded text-gray-900 border-gray-300">Learn more</button>
                     </div>
                 </div>
             </section>
