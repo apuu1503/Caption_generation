@@ -1,7 +1,11 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
+// import { useHistory } from 'react-router-dom';
+// import { BrowserRouter as Router, useHistory } from 'react-router-dom';
 
 const user = {
     name: 'Tom Cook',
@@ -22,11 +26,18 @@ const userNavigation = [
     { name: 'Sign out', href: '#' },
 ]
 
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function LandingPage() {
+export default function LandingPage(history) {
+    // const history = useHistory();
+    const navigate = useNavigate();
+
+    const handleGetStarted = () => {
+        navigate('/form'); // Navigate to the '/form' route
+    };
     return (
         <div className="space-y-12 bg-gray-100 text-gray-800">
             <header className="p-4">
@@ -66,8 +77,7 @@ export default function LandingPage() {
                     <p className="px-8 mt-8 mb-12 text-lg">Instantly showcase your skills & achievements.
                         Seize opportunities with a polished portfolio.</p>
                     <div className="flex flex-wrap justify-center">
-                        <button type='button' className="px-8 py-3 m-2 text-lg font-semibold rounded cursor-pointer text-gray-50 bg-rose-600">Get started</button>
-                        <button className="px-8 py-3 m-2 text-lg border rounded text-gray-900 border-gray-300">Learn more</button>
+                        <button onClick={handleGetStarted} className="px-8 py-3 m-2 text-lg font-semibold rounded cursor-pointer text-gray-50 bg-rose-600">Get started</button>                        <button className="px-8 py-3 m-2 text-lg border rounded text-gray-900 border-gray-300">Learn more</button>
                     </div>
                 </div>
             </section>
@@ -121,46 +131,33 @@ export default function LandingPage() {
                         <div className="p-6 xl:col-span-3">
                             <div className="grid gap-4 md:grid-cols-2">
                                 <div className="grid content-center gap-4">
-                                    <div className="p-6 rounded shadow-md bg-gray-50">
-                                        <p>An audire commodo habemus cum. Ne sed corrumpit repudiandae. Tota aliquip democritum pro in, nec democritum intellegam ne. Propriae volutpat dissentiet ea sit, nec at lorem inani tritani, an ius populo perfecto vituperatoribus. Eu cum case modus salutandi, ut eum vocent sensibus reprehendunt.</p>
+                                    <div className="p-2 rounded shadow-md bg-gray-50">
                                         <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/51x51/?portrait" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-600">CTO of Company Co.</p>
-                                            </div>
+                                            <img src="public\Tem1photo1.png" alt="Template1" />
                                         </div>
                                     </div>
-                                    <div className="p-6 rounded shadow-md bg-gray-50">
-                                        <p>Sit wisi sapientem ut, pri civibus temporibus voluptatibus et, ius cu hinc fabulas. Nam meliore minimum et, regione convenire cum id. Ex pro eros mucius consectetuer, pro magna nulla nonumy ne, eam putent iudicabit consulatu cu.</p>
+
+                                    <div className="p-2 rounded shadow-md bg-gray-50">
+
                                         <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/52x52/?portrait" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-600">CTO of Company Co.</p>
-                                            </div>
+                                            <img src="public\Tem1photo2.png" alt="Template1" />
                                         </div>
+
                                     </div>
                                 </div>
                                 <div className="grid content-center gap-4">
-                                    <div className="p-6 rounded shadow-md bg-gray-50">
-                                        <p>Putant omnium elaboraret per ut. Id dicta tritani nominavi quo, mea id justo errem elaboraret. Agam mollis scripserit ea his, ut nec postea verear persecuti. Ea noster senserit eam, ferri omittantur ei nec. Id mel solet libris efficiantur, commune explicari et eos. Case movet ad est, sed tota vocent appetere ea.</p>
+                                    <div className="p-2 rounded shadow-md bg-gray-50">
+
                                         <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/53x53/?portrait" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-600">CTO of Company Co.</p>
-                                            </div>
+                                            <img src="public\Tem2photo1.png" alt="" />
+
                                         </div>
                                     </div>
-                                    <div className="p-6 rounded shadow-md bg-gray-50">
-                                        <p>Te omnes virtute volutpat sed. Ei esse eros interesset vel, ei populo denique ocurreret vix, eu cum pertinax mandamus vituperatoribus. Solum nihil luptatum per ex, ei amet viderer eos. Ea illum labitur mnesarchum pro. Eius meis salutandi ei nam, alterum expetenda et nec. Expetenda intellegat at eum, per mazim sanctus honestatis ad. Ei noluisse invenire vix. Te ancillae patrioque qui, probo bonorum vivendum ex vim.</p>
+                                    <div className="p-2 rounded shadow-md bg-gray-50">
+
                                         <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/54x54/?portrait" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-600">CTO of Company Co.</p>
-                                            </div>
+                                            <img src="public\Tem2photo2.png" alt="" />
+
                                         </div>
                                     </div>
                                 </div>

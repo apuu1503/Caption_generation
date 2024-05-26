@@ -1,44 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Tabs } from 'antd';
 import PersonalInformationForm from './PersonalInformationForm';
 import ProjectsAndSkillsForm from './ProjectsAndSkillsForm';
 import ExperienceForm from './ExperienceForm';
 
+const { TabPane } = Tabs;
+
 function Form() {
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
-        // Your form data
-        // firstName: '',
-        // lastName: '',
-        // email: '',
-        // country: '',
-        // streetAddress: '',
-        // city: '',
-        // region: '',
-        // postalCode: '',
-        // about: '',
-        // image: null
+        personalInformation: {},
+        projects: {}, // Initialize as an empty array
+        experience: {},
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e, section) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-        console.log(formData); // Log the updated form data
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:3000/submit-form', formData);
-            console.log(response)
-            sessionStorage.setItem('formId', response.data.id);
-            // alert('Form data submitted successfully!');
-            setFormData({});
-            window.location.href = `/template1/${response.data.id}`; // Redirect to '/template' after successful form submission
-        } catch (error) {
-            console.error('Error submitting form data:', error);
-            alert('An error occurred while submitting form data. Please try again.');
-        }
+        setFormData(prevData => ({
+            ...prevData,
+            [section]: {
+                ...prevData[section],
+                [name]: value,
+            },
+        }));
     };
 
     const handleNextStep = () => {
@@ -49,30 +34,58 @@ function Form() {
         setCurrentStep(currentStep - 1);
     };
 
+    const handleSubmit = async () => {
+        try {
+            // Format projects with unique IDs
+            // Send formatted data to the backend
+            const response = await axios.post('http://localhost:3000/submit-form', {
+                personalInformation: formData.personalInformation,
+                projects: formData.projects,
+                experience: formData.experience,
+            });
+
+            console.log('Form data submitted:', response.data);
+            localStorage.setItem('formDataId', response.data.id);
+            setFormData({
+                personalInformation: {},
+                projects: [], // Reset projects to an empty array
+                experience: {},
+            });
+            window.location.href = `/choosetemplate/${response.data.id}`;
+        } catch (error) {
+            console.error('Error submitting form data:', error);
+        }
+    };
+
     return (
-        <form onSubmit={handleSubmit}>
-            {currentStep === 1 && (
-                <PersonalInformationForm
-                    formData={formData}
-                    handleChange={handleChange}
-                // style={{ "background-color": "black" }}
-                />
-            )}
-            {currentStep == 2 && (
-                <ProjectsAndSkillsForm
-                    formData={formData}
-                    handleChange={handleChange}
-                />
-            )}
-            {currentStep === 3 && (
-                <ExperienceForm
-                    formData={formData}
-                    handleChange={handleChange}
-                />
-            )}
+        <form>
+            <Tabs
+                activeKey={currentStep.toString()}
+                onChange={(key) => setCurrentStep(parseInt(key))}
+                tabBarStyle={{ padding: '20px', margin: '0 auto', maxWidth: '800px' }}
+            >
+                <TabPane tab="Personal Information" key="1">
+                    <PersonalInformationForm
+                        formData={formData.personalInformation}
+                        handleChange={(e) => handleChange(e, 'personalInformation')}
+                    />
+                </TabPane>
+                <TabPane tab="Projects & Skills" key="2">
+                    <ProjectsAndSkillsForm
+                        formData={formData.projects}
+                        handleChange={(e) => handleChange(e, 'projects')}
+                    />
+                </TabPane>
+                <TabPane tab="Experience" key="3">
+                    <ExperienceForm
+                        formData={formData.experience}
+                        handleChange={(e) => handleChange(e, 'experience')}
+                    />
+                </TabPane>
+            </Tabs>
             <div className="mt-6 flex items-center justify-between">
                 {currentStep > 1 && (
-                    <button type="button" onClick={handlePrevStep} className="rounded-md bg-indigo-600 px-8 py-2 mb-12 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"  >
+                    <button type="button" onClick={handlePrevStep} className="rounded-md bg-indigo-600 px-8 py-2 mb-12 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
                         Previous
                     </button>
                 )}
@@ -82,7 +95,7 @@ function Form() {
                     </button>
                 )}
                 {currentStep === 3 && (
-                    <button type="submit" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500" style={{ backgroundColor: "#ff4271" }}>
+                    <button type="button" onClick={handleSubmit} className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500" style={{ backgroundColor: "#ff4271" }}>
                         Submit
                     </button>
                 )}

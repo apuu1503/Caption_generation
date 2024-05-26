@@ -1,212 +1,132 @@
 import React, { useState } from 'react';
+const ProjectsAndSkillsForm = ({ formData = {}, handleChange }) => {
+    // State for managing projects
+    const [projects, setProjects] = useState(formData.projects || []);
 
-const ProjectsAndSkillsForm = ({ formData, handleChange }) => {
-    const [showProjectForm1, setShowProjectForm1] = useState(false);
-    const [showProjectForm2, setShowProjectForm2] = useState(false);
-    const [showProjectForm3, setShowProjectForm3] = useState(false);
-    const [showSkillInput, setShowSkillInput] = useState(false); // State for showing skill input box
-    const [skills, setSkills] = useState(formData.skills || '');
-    const toggleProjectForm1 = () => {
-        setShowProjectForm1(!showProjectForm1);
-        // setShowProjectForm2(false);
-        // setShowProjectForm3(false);
-    };
-
-    const toggleProjectForm2 = () => {
-        setShowProjectForm2(!showProjectForm2);
-        // setShowProjectForm1(false);
-        // setShowProjectForm3(false);
-    };
-
-    const toggleProjectForm3 = () => {
-        setShowProjectForm3(!showProjectForm3);
-        // setShowProjectForm1(false);
-        // setShowProjectForm2(false);
-    };
-    const handleSkillChange = (e) => {
-        setSkills(e.target.value);
+    // Function to handle project input change
+    const handleExperienceChange = (e, index, field) => {
+        const updatedProjects = [...projects];
+        updatedProjects[index][field] = e.target.value;
+        setProjects(updatedProjects);
         handleChange(e);
     };
 
+    // Function to add a new project
+    const addProject = () => {
+        setProjects([...projects, { title: '', technologies: '', description: '', isOpen: true }]);
+    };
+
+    // Function to toggle project details
+    const toggleProject = (index) => {
+        const updatedProjects = [...projects];
+        updatedProjects[index].isOpen = !updatedProjects[index].isOpen;
+        setProjects(updatedProjects);
+    };
+
+    // State for managing skills
+    const [skills, setSkills] = useState(formData.skills || []);
+
+    // Function to handle project input change
+
+
+    // Function to handle skill input change
+    const handleSkillChange = (e, index) => {
+        const updatedSkills = [...skills];
+        updatedSkills[index] = e.target.value; // Update the skill at the specified index
+        setSkills(updatedSkills);
+        handleChange(e); // Trigger parent handleChange to update formData
+    };
+
+    // Function to add a new project
+
+    // Function to add a new skill
     const addSkill = () => {
-        var newSkill;
-
-        if (newSkill) {
-            setSkills((prevSkills) => prevSkills + (prevSkills ? ', ' : '') + newSkill);
-        }
-        return (
-            <input
-                type="text"
-                id="TechnologiesUsed1"
-                name="skill"
-                value={formData.skill}
-                onChange={handleChange}
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                required
-            />
-        )
-        // You can add logic to prevent adding empty skills
-
+        setSkills([...skills, '']);
     };
 
-    const saveSkill = () => {
-        setShowSkillInput(false);
-        // You can add validation or other logic before saving
-    };
+    // Function to toggle project details
+
 
     return (
         <div className="space-y-12 ml-[20%] mr-[20%]" style={{ backgroundColor: '#fce6eb', margin: '50px', padding: '30px', borderRadius: "20px" }}>
             <div className="border-b border-gray-900/10 pb-12">
                 <h2 className="text-base font-semibold leading-7 text-gray-900">Projects and Skills</h2>
-                <div className="mt-10">
-                    <h2 className="text-base font-semibold leading-7 text-gray-900">Project1</h2>
-                    <div>
-                        <label htmlFor="projectTitle1">Title</label>
-                        <input
-                            type="text"
-                            id="projectTitle1"
-                            name="projectTitle1"
-                            value={formData.projectTitle1}
-                            onChange={handleChange}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                {/* Rendering projects */}
+                <div>
+                    {/* Rendering projects */}
+                    {projects.map((project, index) => (
+                        <div key={index}>
+                            <h2>Project {index + 1}</h2>
+                            <button onClick={() => toggleProject(index)}>
+                                {project.isOpen ? 'Hide Details' : 'Show Details'}
+                            </button>
+                            {project.isOpen && (
+                                <div>
+                                    <label htmlFor={`projectTitle${index}`}>Title</label>
+                                    <input
+                                        type="text"
+                                        id={`projectTitle${index}`}
+                                        name={`projectTitle${index}`}
+                                        value={project.projectTitle}
+                                        onChange={(e) => handleExperienceChange(e, index, 'projectTitle')}
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
+                                    <label htmlFor={`technologies${index}`}>Technologies Used</label>
+                                    <input
+                                        type="text"
+                                        id={`technologies${index}`}
+                                        name={`technologies${index}`}
+                                        value={project.technologies}
+                                        onChange={(e) => handleExperienceChange(e, index, 'technologies')}
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
+                                    <label htmlFor={`projectDescription${index}`}>Project Description</label>
+                                    <textarea
+                                        type="text"
+                                        id={`projectDescription${index}`}
+                                        name={`projectDescription${index}`}
+                                        value={project.description}
 
-                        />
-                        <label htmlFor="TechnologiesUsed1">Technologies Used</label>
-                        <input
-                            type="text"
-                            id="TechnologiesUsed1"
-                            name="TechnologiesUsed1"
-                            value={formData.TechnologiesUsed1}
-                            onChange={handleChange}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-
-                        />
-                        <label htmlFor="ProjectDescription1">Project Description</label>
-                        <textarea
-                            type="text"
-                            id="ProjectDescription1"
-                            name="ProjectDescription1"
-                            rows={2}
-                            value={formData.ProjectDescription1}
-                            onChange={handleChange}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-
-                        />
-
-                        {/* Add other fields for project 1 here */}
-                    </div>
-
+                                        // value={project.technologies}
+                                        onChange={(e) => handleExperienceChange(e, index, 'description')}
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    // id={`projectDescription${index}`}
+                                    // onChange={(e) => handleProjectChange(e, index, 'description')}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                    {/* Button to add a new project */}
+                    {/* <button onClick={addProject}>Add Project</button> */}
                 </div>
-                <div className="mt-10">
-
-                    <h2 className="text-base font-semibold leading-7 text-gray-900">Project2</h2>
-                    <div>
-                        <label htmlFor="projectTitle2">Title</label>
-                        <input
-                            type="text"
-                            id="projectTitle2"
-                            name="projectTitle2"
-                            value={formData.projectTitle2}
-                            onChange={handleChange}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-
-                        />
-                        <label htmlFor="TechnologiesUsed2">Technologies Used</label>
-                        <input
-                            type="text"
-                            id="TechnologiesUsed2"
-                            name="TechnologiesUsed2"
-                            value={formData.TechnologiesUsed2}
-                            onChange={handleChange}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-
-                        />
-                        <label htmlFor="ProjectDescription2">Project Description</label>
-                        <textarea
-                            type="text"
-                            id="ProjectDescription2"
-                            name="ProjectDescription2"
-                            rows={2}
-                            value={formData.ProjectDescription2}
-                            onChange={handleChange}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-
-                        />
-                        {/* Add other fields for project 2 here */}
-                    </div>
-
-                </div>
-                <div className="mt-10">
-                    <h2 className="text-base font-semibold leading-7 text-gray-900">Project3</h2>
-                    <div>
-                        <label htmlFor="projectTitle3">Title</label>
-                        <input
-                            type="text"
-                            id="projectTitle3"
-                            name="projectTitle3"
-                            value={formData.projectTitle3}
-                            onChange={handleChange}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-
-                        />
-                        <label htmlFor="TechnologiesUsed3">Technologies Used</label>
-                        <input
-                            type="text"
-                            id="TechnologiesUsed3"
-                            name="TechnologiesUsed3"
-                            value={formData.TechnologiesUsed3}
-                            onChange={handleChange}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-
-                        />
-                        <label htmlFor="ProjectDescription3">Project Description</label>
-                        <textarea
-                            type="text"
-                            id="ProjectDescription3"
-                            name="ProjectDescription3"
-                            rows={2}
-                            value={formData.ProjectDescription3}
-                            onChange={handleChange}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-
-                        />
-                        {/* Add other fields for project 3 here */}
-                    </div>
-
-                </div>
+                {/* Button to add a new project */}
                 <div className="mt-6">
-
-                    <div className="mt-2">
-                        <div>
-                            <h2 className="text-base font-semibold leading-7 text-gray-900">Skills</h2>
+                    <button type="button" onClick={addProject}>Add Project</button>
+                </div>
+                {/* Rendering skills */}
+                <div className="mt-10">
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">Skills</h2>
+                    {/* Rendering individual skill items */}
+                    {skills.map((skill, index) => (
+                        <div key={index} className="mt-2">
                             <input
                                 type="text"
-                                placeholder='  Add skill1'
+                                placeholder={`Skill ${index + 1}`}
+                                name={`skill${index + 1}`}
+                                value={skill}
+                                onChange={(e) => handleSkillChange(e, index)}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
-                            <input
-                                type="text"
-                                placeholder='  Add skill2'
-                                className="block mt-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                            <input
-                                type="text"
-                                placeholder='  Add skill3'
-                                className="block mt-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                            <input
-                                type="text"
-                                placeholder='  Add skill4'
-                                className="block mt-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                            <input
-                                type="text"
-                                placeholder='  Add skill5'
-                                className="block mt-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                         </div>
-
+                    ))}
+                    {/* Conditional rendering of skill input */}
+                    <div className="mt-2">
+                        <button type="button" onClick={addSkill}>Add Skill</button>
                     </div>
                 </div>
             </div>
         </div>
     );
 };
-
 export default ProjectsAndSkillsForm;
