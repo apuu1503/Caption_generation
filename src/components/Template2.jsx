@@ -41,8 +41,7 @@ const Template2 = () => {
                         <p >{personalInformation.email}</p>
                     </div>
                     <div className='img-mail' >
-                        <img  src="../../../public/screenshot.png" alt="" />
-
+                        <img  src="../../../public/boy1.jpg" alt="" />
                     </div>
 
                 </div>
