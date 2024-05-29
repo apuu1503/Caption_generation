@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Avatar, Card, Col, Row } from 'antd';
+import { Timeline } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
-
-import "./styles/template1.css";
-
-const Template1 = () => {
+import "./styles/template3.css";
+const Template3 = () => {
     const { id } = useParams();
     const [formData, setFormData] = useState(null);
 
@@ -16,6 +15,7 @@ const Template1 = () => {
             try {
                 const response = await axios.get(`http://localhost:3000/fetch-form/${id}`);
                 setFormData(response.data);
+                // console.log(formData)
             } catch (error) {
                 console.error('Error fetching form data:', error);
             }
@@ -29,62 +29,135 @@ const Template1 = () => {
     }
 
     const { personalInformation, projects, experience } = formData;
+    console.log(personalInformation)
+    console.log(projects)
+    console.log(experience)
 
     return (
         <div className="container">
 
-            <section className="section1 " >
+            <section className="section1" >
 
-                <div >
-                    <div >
-                        <h2>{personalInformation.firstName} {personalInformation.lastName}</h2>
-                        <h2>{personalInformation.Designation}</h2>
+                <div className='personal-info' >
+                    <div className='info-P'>
+                        <h2>I am {personalInformation.firstName} {personalInformation.lastName}</h2>
+                        <h3>{personalInformation.Designation}</h3>
                         <p>{personalInformation.about}</p>
                     </div>
-                    <div><Avatar size={294} icon={<UserOutlined />} /></div>
+                    <div className='img-mail' >
+                        {/* <Avatar className='img' size={294} icon={<UserOutlined />} /> */}
+                        <img src="../../../public/screenshot.png" alt="" />
+                        <p >{personalInformation.email}</p>
+                    </div>
+
                 </div>
-                <p >{personalInformation.email}</p>
-            </section>
 
-            <section className="section2">
-                <h2 >Projects</h2>
-                <Row gutter={16}>
-                    {Object.keys(projects).map((key, index) => {
-                        if (key.startsWith('projectTitle')) {
-                            const projectIndex = key.replace('projectTitle', '');
-                            return (
-                                <Col span={8} key={index}>
-                                    <Card title={projects[`projectTitle${projectIndex}`]} style={{ width: '200px' }}>
-                                        <p><strong>Technologies:</strong> {projects[`technologies${projectIndex}`]}</p>
-                                        <p><strong>Description:</strong> {projects[`projectDescription${projectIndex}`]}</p>
-                                    </Card>
-                                </Col>
-                            );
-                        }
-                        return null;
-                    })}
-                </Row>
             </section>
+            <section className="section4">
+                <h2 >Skills</h2>
+                <div className='skill'>
+                    <Row gutter={16} >
+                        {Object.keys(projects).map((key, index) => {
+                            if (key.startsWith('skill')) {
+                                const projectIndex = key.replace('skill', '');
 
-            <section className="section3">
-                <h2>Experience</h2>
-                {Object.keys(experience).map((key, index) => {
-                    if (key.startsWith('experienceTitle')) {
-                        const experienceIndex = key.replace('experienceTitle', '');
-                        return (
-                            <div key={index} className="experience">
-                                <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
-                                <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
-                                <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
-                                <p><strong>End Date:</strong> {experience[`experienceEndDate${experienceIndex}`]}</p>
-                            </div>
-                        );
-                    }
-                    return null;
-                })}
+                                return (
+                                    <Col span={8} key={index}>
+                                        <h2 className='skills'>{projects[`skill${projectIndex}`]}
+                                        </h2>
+                                    </Col>
+                                );
+                                return null;
+                            }
+                        })}
+                    </Row>
+                </div>
             </section>
-        </div >
+            <div className='projectsandskill'>
+                <img className='projimg' src="../../../public/service.jpg" alt="" />
+                <section className="section2">
+                    <h2 >My Recent work</h2>
+                    <div className='project'>
+                        <Row gutter={16} >
+                            {Object.keys(projects).map((key, index) => {
+                                if (key.startsWith('projectTitle')) {
+                                    const projectIndex = key.replace('projectTitle', '');
+
+                                    return (
+                                        <Row key={index}>
+                                            <Card
+                                                className='card'
+                                                title={projects[`projectTitle${projectIndex}`]}
+
+                                            >
+                                                <p><strong>Technologies:</strong> {projects[`technologies${projectIndex}`]}</p>
+                                                <p><strong>Description:</strong> {projects[`projectDescription${projectIndex}`]}</p>
+                                            </Card>
+                                        </Row>
+                                    );
+                                }
+                                return null;
+                            })}
+                        </Row>
+                    </div>
+                </section>
+
+
+
+            </div>
+
+
+            <div className='experience'>
+
+                <section className="section3">
+
+                    <h2>Experience</h2>
+                    <div>
+                        {Object.keys(experience).map((key, index) => {
+                            if (key.startsWith('experienceTitle')) {
+                                const experienceIndex = key.replace('experienceTitle', '');
+                                return (
+
+                                    <Timeline>
+                                        <div key={index} className="experience">
+                                            <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
+                                            <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
+                                            <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
+                                            <p><strong>End Date:</strong> {experience[`experienceEndDate${experienceIndex}`]}</p>
+                                        </div>
+                                    </Timeline>
+
+                                );
+                            }
+                            return null;
+                        })}
+                    </div>
+                </section>
+                <img src="../../../public/coding.png" alt="" />
+            </div >
+            <section className="section5" >
+
+                <div className='about' >
+                    <h1>About</h1>
+                    <div >
+                        <h2>Name: {personalInformation.firstName} {personalInformation.lastName}</h2>
+                        <h3>Designation: {personalInformation.Designation}</h3>
+                        {/* <p>{personalInformation.about}</p> */}
+                        <p>MAil ID: {personalInformation.email}</p>
+                        <p>Contact: {personalInformation.contact}</p>
+                        <p>Address: {personalInformation.city}</p>
+                    </div>
+                    <div className='img-mail' >
+                        {/* <Avatar className='img' size={294} icon={<UserOutlined />} /> */}
+                        {/* <img src="../../../public/screenshot.png" alt="" /> */}
+
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
     );
 };
 
-export default Template1;
+export default Template3;
