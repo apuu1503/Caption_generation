@@ -4,8 +4,6 @@ import axios from 'axios';
 import { Avatar, Card, Col, Row } from 'antd';
 import { Timeline } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-
-
 import "./styles/template1.css";
 
 const Template1 = () => {
