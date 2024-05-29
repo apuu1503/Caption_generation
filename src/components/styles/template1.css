@@ -13,12 +13,14 @@
   display: flex;
   justify-content: space-between;
   width: 85%;
-  margin: auto;
+  margin: 2% auto 2% 10%;
 }
 
 .info-P p {
   width: 50%;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
+  color: rgb(120, 49, 49);
+  ;
 }
 
 .personal-info h2 {
@@ -35,8 +37,9 @@
   margin: 0 0 2% 0;
 }
 
-.img-mail .img {
-  margin: 0 0 7% 0;
+.img-mail {
+  width: 50%;
+  ;
 }
 
 /* Section 2 */

@@ -1,10 +1,11 @@
 .container {
     width: 100%;
+    background-color: white;
 
 }
 
 .section1 {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     padding: 2%;
     margin: 0% 0% 0% 0%;
 
@@ -47,7 +48,7 @@
 .section2 {
     padding: 2%;
     margin: 0% 0% 0% 0%;
-    background-color: #f2f3f5;
+    background-color: #ffffff;
 }
 
 .project {
@@ -74,7 +75,7 @@
 .section3 {
     padding: 2%;
     margin: 0% 0% 0% 0%;
-    background-color: #f2f3f5;
+    background-color: #ffffff;
 }
 
 .section3 h2 {

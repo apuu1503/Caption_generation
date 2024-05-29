@@ -44,9 +44,9 @@ const Template1 = () => {
                         <h3>{personalInformation.Designation}</h3>
                         <p>{personalInformation.about}</p>
                     </div>
-                    <div className='img-mail' style={{ paddingRight: "20px" }}>
+                    <div  >
                         {/* <Avatar className='img' size={294} icon={<UserOutlined />} /> */}
-                        <img src="../../../public/man.a413a55f1b9964c1bfdf.png" alt="" />
+                        <img className='img-mail'  src="../../../public/man.a413a55f1b9964c1bfdf.png" alt="" />
                         <p >{personalInformation.email}</p>
                     </div>
 
@@ -106,8 +106,8 @@ const Template1 = () => {
                             const experienceIndex = key.replace('experienceTitle', '');
                             return (
 
-                                <Timeline>
-                                    <div key={index} className="experience">
+                                <Timeline className="experience">
+                                    <div key={index} >
                                         <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
                                         <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
                                         <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
