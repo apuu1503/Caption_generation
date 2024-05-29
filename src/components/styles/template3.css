@@ -1,0 +1,143 @@
+.container {
+    background-color: rgb(249, 249, 249);
+}
+
+.section1 {
+    /* color: rgb(0, 0, 0); */
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    /* margin: 0; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.personal-info p {
+    width: 70%;
+
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+
+}
+
+.section2 {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    align-content: center;
+    margin-left: 70px;
+    /* display: flex; */
+
+}
+
+
+
+.section2 h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: rgb(82, 82, 82);
+    text-align: center;
+
+}
+
+.projectsandskill {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    justify-content: space-between;
+}
+
+.section4 {
+    background-color: rgb(222, 222, 222);
+    /* height: 20px; */
+    /* background-image: ""; */
+}
+
+.section4 h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: rgb(82, 82, 82);
+
+    text-align: center;
+}
+
+.skill {
+    /* margin-left: 90px; */
+    margin-top: 20px;
+    width: 90%;
+    /* text-align: center; */
+}
+
+
+.skill h2 {
+    font-size: 1.5rem;
+    /* border: 1px solid; */
+    margin: 0;
+    width: 500px;
+
+}
+
+.projimg {
+    height: 600px;
+    width: 600px;
+    margin-left: 150px;
+    margin-top: 100px;
+}
+
+.card {
+    height: 200px;
+    margin-left: 90px;
+    background-color: rgb(200, 211, 220);
+    width: 500px;
+}
+
+
+
+.personal-info h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    margin: 0;
+}
+
+.personal-info h3 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgb(134, 54, 54);
+    margin: 0 0 2% 0;
+}
+
+.info-P {
+    margin-top: 120px;
+    margin-left: 140px;
+    /* margin-right: 20px; */
+    /* margin-bottom: 20px; */
+    font-size: 30px;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+}
+
+.img-mail {
+    width: 600px;
+    height: 600px;
+    margin-top: -60px;
+    margin-right: -140px;
+
+}
+
+.experience {
+    display: flex;
+    justify-content: space-between;
+    /* width: 800px; */
+    margin-top: 50px;
+}
+
+.experience img {
+    width: 800px;
+    height: 600px;
+
+}
+
+.section3 {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    /* margin-left: 70px; */
+}
