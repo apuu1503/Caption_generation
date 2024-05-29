@@ -3,11 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Avatar, Card, Col, Row } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-
-
 import "./styles/template1.css";
 
-const Template1 = () => {
+const Template2 = () => {
     const { id } = useParams();
     const [formData, setFormData] = useState(null);
 
@@ -35,60 +33,67 @@ const Template1 = () => {
 
             <section className="section1 " >
 
-                <div >
-                    <div >
+                <div className='personal-info' >
+                    <div className='info-P'>
                         <h2>{personalInformation.firstName} {personalInformation.lastName}</h2>
-                        <h2>{personalInformation.Designation}</h2>
+                        <h3>{personalInformation.Designation}</h3>
                         <p>{personalInformation.about}</p>
+                        <p >{personalInformation.email}</p>
                     </div>
-                    <div>
-                        <img src="build_folio\public\11879291_202011_01.jpg" alt="" />
+                    <div className='img-mail' >
+                        <img  src="../../../public/screenshot.png" alt="" />
+
                     </div>
+
                 </div>
-                <p >{personalInformation.email}</p>
+
             </section>
 
             <section className="section2">
                 <h2 >Projects</h2>
-                <Row gutter={16}>
-                    {Object.keys(projects).map((key, index) => {
-                        
-                        if (key.startsWith('projectTitle')) {
-                            const projectIndex = key.replace('projectTitle', '');
-                            return (
-                                <Col span={8} key={index}>
-                                    <Card title={projects[`projectTitle${projectIndex}`]} style={{ width: '200px' }}>
-                                        
-                                        <p><strong>Technologies:</strong> {projects[`technologies${projectIndex}`]}</p>
-                                        <p><strong>Description:</strong> {projects[`projectDescription${projectIndex}`]}</p>
-                                    </Card>
-                                </Col>
-                            );
-                        }
-                        return null;
-                    })}
-                </Row>
+                <div className='project'>
+                    <Row gutter={16} >
+                        {Object.keys(projects).map((key, index) => {
+                            if (key.startsWith('projectTitle')) {
+                                const projectIndex = key.replace('projectTitle', '');
+
+                                return (
+                                    <Col span={8} key={index}>
+                                        <Card className='card' title={projects[`projectTitle${projectIndex}`]} >
+
+                                            <p><strong>Technologies:</strong> {projects[`technologies${projectIndex}`]}</p>
+                                            <p><strong>Description:</strong> {projects[`projectDescription${projectIndex}`]}</p>
+                                        </Card>
+                                    </Col>
+                                );
+                            }
+                            return null;
+                        })}
+                    </Row>
+                </div>
             </section>
 
             <section className="section3">
                 <h2>Experience</h2>
-                {Object.keys(experience).map((key, index) => {
-                    if (key.startsWith('experienceTitle')) {
-                        const experienceIndex = key.replace('experienceTitle', '');
-                        return (
-                            <div key={index} className="experience">
-                                <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
-                                <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
-                                <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
-                                <p><strong>End Date:</strong> {experience[`experienceEndDate${experienceIndex}`]}</p>
-                            </div>
-                        );
-                    }
-                    return null;
-                })}
+                <div>
+                    {Object.keys(experience).map((key, index) => {
+                        if (key.startsWith('experienceTitle')) {
+                            const experienceIndex = key.replace('experienceTitle', '');
+                            return (
+                                <div key={index} className="experience">
+                                    <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
+                                    <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
+                                    <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
+                                    <p><strong>End Date:</strong> {experience[`experienceEndDate${experienceIndex}`]}</p>
+                                </div>
+                            );
+                        }
+                        return null;
+                    })}
+                </div>
             </section>
         </div >
     );
 };
 
-export default Template1;
+export default Template2;
