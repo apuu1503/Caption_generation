@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Avatar, Card, Col, Row } from 'antd';
+import { Timeline } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import "./styles/template1.css";
 
@@ -14,6 +15,7 @@ const Template1 = () => {
             try {
                 const response = await axios.get(`http://localhost:3000/fetch-form/${id}`);
                 setFormData(response.data);
+                // console.log(formData)
             } catch (error) {
                 console.error('Error fetching form data:', error);
             }
@@ -27,6 +29,9 @@ const Template1 = () => {
     }
 
     const { personalInformation, projects, experience } = formData;
+    console.log(personalInformation)
+    console.log(projects)
+    console.log(experience)
 
     return (
         <div className="container">
@@ -39,13 +44,34 @@ const Template1 = () => {
                         <h3>{personalInformation.Designation}</h3>
                         <p>{personalInformation.about}</p>
                     </div>
-                    <div className='img-mail'>
-                        <Avatar className='img' size={294} icon={<UserOutlined />} />
+                    <div className='img-mail' style={{ paddingRight: "20px" }}>
+                        {/* <Avatar className='img' size={294} icon={<UserOutlined />} /> */}
+                        <img src="../../../public/man.a413a55f1b9964c1bfdf.png" alt="" />
                         <p >{personalInformation.email}</p>
                     </div>
 
                 </div>
 
+            </section>
+            <section className="section4">
+                <h2 >Skills</h2>
+                <div className='project'>
+                    <Row gutter={16} >
+                        {Object.keys(projects).map((key, index) => {
+                            if (key.startsWith('skill')) {
+                                const projectIndex = key.replace('skill', '');
+
+                                return (
+                                    <Col span={8} key={index}>
+                                        <Card className='card' title={projects[`skill${projectIndex}`]} >
+                                        </Card>
+                                    </Col>
+                                );
+                                return null;
+                            }
+                        })}
+                    </Row>
+                </div>
             </section>
 
             <section className="section2">
@@ -55,11 +81,11 @@ const Template1 = () => {
                         {Object.keys(projects).map((key, index) => {
                             if (key.startsWith('projectTitle')) {
                                 const projectIndex = key.replace('projectTitle', '');
-                                
+
                                 return (
                                     <Col span={8} key={index}>
                                         <Card className='card' title={projects[`projectTitle${projectIndex}`]} >
-                                            
+
                                             <p><strong>Technologies:</strong> {projects[`technologies${projectIndex}`]}</p>
                                             <p><strong>Description:</strong> {projects[`projectDescription${projectIndex}`]}</p>
                                         </Card>
@@ -79,12 +105,16 @@ const Template1 = () => {
                         if (key.startsWith('experienceTitle')) {
                             const experienceIndex = key.replace('experienceTitle', '');
                             return (
-                                <div key={index} className="experience">
-                                    <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
-                                    <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
-                                    <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
-                                    <p><strong>End Date:</strong> {experience[`experienceEndDate${experienceIndex}`]}</p>
-                                </div>
+
+                                <Timeline>
+                                    <div key={index} className="experience">
+                                        <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
+                                        <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
+                                        <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
+                                        <p><strong>End Date:</strong> {experience[`experienceEndDate${experienceIndex}`]}</p>
+                                    </div>
+                                </Timeline>
+
                             );
                         }
                         return null;
