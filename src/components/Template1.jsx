@@ -52,74 +52,101 @@ const Template1 = () => {
                 </div>
 
             </section>
-            {/* <section className="section4">
-                <h2 >Skills</h2>
-                <div className='project'>
-                    <Row gutter={16} >
-                        {Object.keys(projects).map((key, index) => {
-                            if (key.startsWith('skill')) {
-                                const projectIndex = key.replace('skill', '');
+            <section className="section15" >
 
-                                return (
+                <div className='about13' >
 
-                                    <Card className='card1' title={projects[`skill${projectIndex}`]} >
-                                    </Card>
+                    <div className='aboutinfo1'>
+                        <h1>About</h1>
+                        <h2>Name: {personalInformation.firstName} {personalInformation.lastName}</h2>
+                        <h3>Designation: {personalInformation.Designation}</h3>
+                        <Row gutter={15} >
+                            <h3 className='skillhead'>Skills: </h3>
+                            {Object.keys(projects).map((key, index) => {
+                                if (key.startsWith('skill')) {
+                                    const projectIndex = key.replace('skill', '');
 
-                                );
-                                return null;
-                            }
-                        })}
-                    </Row>
+                                    return (
+                                        <div className='skill1'>
+
+                                            <h2 className='skills'>{projects[`skill${projectIndex}`]} |</h2>
+
+                                        </div>
+
+
+                                    );
+                                    return null;
+                                }
+                            })}
+                        </Row>
+                        <p>About: {personalInformation.about}</p>
+                        <p>MAil ID: {personalInformation.email}</p>
+                        <p>Contact: {personalInformation.contact}</p>
+                        <p>Address: {personalInformation.city}</p>
+
+                    </div>
+                    <div className='img-mail1' >
+                        {/* <Avatar className='img' size={294} icon={<UserOutlined />} /> */}
+                        <img src="../../../public/boy1.jpg" alt="" />
+
+                    </div>
+
                 </div>
-            </section> */}
 
-            <section className="section12">
-                <h2 >Projects</h2>
-                <div className='project1' >
-                    <Row gutter={16} >
-                        {Object.keys(projects).map((key, index) => {
-                            if (key.startsWith('projectTitle')) {
-                                const projectIndex = key.replace('projectTitle', '');
 
+            </section>
+            <div className='projexskill1'>
+                <div>
+                    <section className="section12">
+                        <h2 >Projects</h2>
+                        <div className='project1' >
+                            <Row  >
+                                {Object.keys(projects).map((key, index) => {
+                                    if (key.startsWith('projectTitle')) {
+                                        const projectIndex = key.replace('projectTitle', '');
+                                        return (
+                                            <Row key={index} >
+                                                <Card className='card1' style={{ width: "700px" }} title={projects[`projectTitle${projectIndex}`]} >
+                                                    <p><strong>Technologies:</strong> {projects[`technologies${projectIndex}`]}</p>
+                                                    <p><strong>Description:</strong> {projects[`projectDescription${projectIndex}`]}</p>
+                                                </Card>
+                                            </Row>
+                                        );
+                                    }
+                                    return null;
+                                })}
+                            </Row>
+                        </div>
+                    </section>
+
+                </div>
+
+                <section className="section13">
+                    <h2>Experience</h2>
+                    <div>
+                        {Object.keys(experience).map((key, index) => {
+                            if (key.startsWith('experienceTitle')) {
+                                const experienceIndex = key.replace('experienceTitle', '');
                                 return (
-                                    <Col span={8} key={index} >
-                                        <Card className='card1' style={{ width: "350px", margin: "10px 10px 10px 150px" }} title={projects[`projectTitle${projectIndex}`]} >
 
-                                            <p><strong>Technologies:</strong> {projects[`technologies${projectIndex}`]}</p>
-                                            <p><strong>Description:</strong> {projects[`projectDescription${projectIndex}`]}</p>
-                                        </Card>
-                                    </Col>
+                                    <Timeline className="experience1">
+                                        <div key={index} >
+                                            <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
+                                            <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
+                                            <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
+                                            <p><strong>End Date:</strong> {experience[`experienceEndDate${experienceIndex}`]}</p>
+                                        </div>
+                                    </Timeline>
+
                                 );
                             }
                             return null;
                         })}
-                    </Row>
-                </div>
-            </section>
+                    </div>
+                </section>
 
-            <section className="section13">
-                <h2>Experience</h2>
-                <div>
-                    {Object.keys(experience).map((key, index) => {
-                        if (key.startsWith('experienceTitle')) {
-                            const experienceIndex = key.replace('experienceTitle', '');
-                            return (
+            </div>
 
-                                <Timeline className="experience1">
-                                    <div key={index} >
-                                        <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
-                                        <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
-                                        <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
-                                        <p><strong>End Date:</strong> {experience[`experienceEndDate${experienceIndex}`]}</p>
-                                    </div>
-                                </Timeline>
-
-                            );
-                        }
-                        return null;
-                    })}
-                </div>
-            </section>
         </div >
     );
 };
