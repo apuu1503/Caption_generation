@@ -34,17 +34,17 @@ const Template3 = () => {
     console.log(experience)
 
     return (
-        <div className="container">
+        <div className="container3">
 
-            <section className="section1" >
+            <section className="section31" >
 
-                <div className='personal-info' >
-                    <div className='info-P'>
+                <div className='personal-info3' >
+                    <div className='info-P3'>
                         <h2>I am {personalInformation.firstName} {personalInformation.lastName}</h2>
                         <h3>{personalInformation.Designation}</h3>
                         <p>{personalInformation.about}</p>
                     </div>
-                    <div className='img-mail' >
+                    <div className='img-mail3' >
                         {/* <Avatar className='img' size={294} icon={<UserOutlined />} /> */}
                         <img src="../../../public/screenshot.png" alt="" />
                         <p >{personalInformation.email}</p>
@@ -53,9 +53,9 @@ const Template3 = () => {
                 </div>
 
             </section>
-            <section className="section4">
+            <section className="section34">
                 <h2 >Skills</h2>
-                <div className='skill'>
+                <div className='skill3'>
                     <Row gutter={16} >
                         {Object.keys(projects).map((key, index) => {
                             if (key.startsWith('skill')) {
@@ -63,7 +63,7 @@ const Template3 = () => {
 
                                 return (
                                     <Col span={8} key={index}>
-                                        <h2 className='skills'>{projects[`skill${projectIndex}`]}
+                                        <h2 className='skills3'>{projects[`skill${projectIndex}`]}
                                         </h2>
                                     </Col>
                                 );
@@ -73,11 +73,11 @@ const Template3 = () => {
                     </Row>
                 </div>
             </section>
-            <div className='projectsandskill'>
-                <img className='projimg' src="../../../public/service.jpg" alt="" />
-                <section className="section2">
+            <div className='projectsandskill3'>
+                <img className='projimg3' src="../../../public/service.jpg" alt="" />
+                <section className="section32">
                     <h2 >My Recent work</h2>
-                    <div className='project'>
+                    <div className='project3'>
                         <Row gutter={16} >
                             {Object.keys(projects).map((key, index) => {
                                 if (key.startsWith('projectTitle')) {
@@ -86,7 +86,7 @@ const Template3 = () => {
                                     return (
                                         <Row key={index}>
                                             <Card
-                                                className='card'
+                                                className='card3'
                                                 title={projects[`projectTitle${projectIndex}`]}
 
                                             >
@@ -107,9 +107,9 @@ const Template3 = () => {
             </div>
 
 
-            <div className='experience'>
+            <div className='experience3'>
 
-                <section className="section3">
+                <section className="section33">
 
                     <h2>Experience</h2>
                     <div>
@@ -119,7 +119,7 @@ const Template3 = () => {
                                 return (
 
                                     <Timeline>
-                                        <div key={index} className="experience">
+                                        <div key={index} className="experience3">
                                             <h3>{experience[`experienceTitle${experienceIndex}`]}</h3>
                                             <p><strong>Description:</strong> {experience[`experienceDesc${experienceIndex}`]}</p>
                                             <p><strong>Start Date:</strong> {experience[`experienceStartDate${experienceIndex}`]}</p>
@@ -135,9 +135,9 @@ const Template3 = () => {
                 </section>
                 <img src="../../../public/coding.png" alt="" />
             </div >
-            <section className="section5" >
+            <section className="section35" >
 
-                <div className='about' >
+                <div className='about3' >
                     <h1>About</h1>
                     <div >
                         <h2>Name: {personalInformation.firstName} {personalInformation.lastName}</h2>
@@ -147,7 +147,7 @@ const Template3 = () => {
                         <p>Contact: {personalInformation.contact}</p>
                         <p>Address: {personalInformation.city}</p>
                     </div>
-                    <div className='img-mail' >
+                    <div className='img-mail3' >
                         {/* <Avatar className='img' size={294} icon={<UserOutlined />} /> */}
                         {/* <img src="../../../public/screenshot.png" alt="" /> */}
 

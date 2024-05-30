@@ -1,60 +1,60 @@
-.container {
+.container1 {
   width: 100%;
 
 }
 
-.section1 {
-  background-color: #f2f2f2;
+.section11 {
+
   padding: 2%;
+  height: 95vh;
+  background-image: url(../../../public/background1.jpg);
+  background-size: cover;
   margin: 0% 0% 0% 0%;
 }
 
-.personal-info {
-  display: flex;
-  justify-content: space-between;
+.personal-info1 {
+  margin-left: 55%;
   width: 85%;
-  margin: 2% auto 2% 10%;
 }
 
-.info-P p {
+.info-P1 h2 {
   width: 50%;
+
   font-size: 1.1rem;
-  color: rgb(120, 49, 49);
-  ;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
 }
 
-.personal-info h2 {
+.personal-info1 h2 {
   font-size: 3rem;
   font-weight: bold;
-  color: rgb(177, 80, 80);
+  color: whitesmoke;
   margin: 0;
 }
 
-.personal-info h3 {
+.personal-info1 h3 {
   font-size: 1.9rem;
   font-weight: 400;
-  color: rgb(134, 54, 54);
+  color: rgb(254, 254, 254);
   margin: 0 0 2% 0;
 }
 
-.img-mail {
+.img-mail1 {
   width: 50%;
   ;
 }
 
 /* Section 2 */
 
-.section2 {
-  padding: 2%;
-  margin: 0% 0% 0% 0%;
+.section12 {
   background-color: #f2f3f5;
 }
 
-.project {
-  width: 85%;
+.project1 {
+  margin-right: 30%;
 }
 
-.section2 h2 {
+.section12 h2 {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 500;
@@ -63,21 +63,24 @@
 
 }
 
-.card {
-  justify-content: space-around;
-  width: 100%;
-  margin: 2% 0% 0% 25%;
+.card1 {
+  margin: 1%;
+  width: 30%;
+
 }
+
+
+
 
 /* section 3  */
 
-.section3 {
+.section13 {
   padding: 2%;
   margin: 0% 0% 0% 0%;
   background-color: #f2f3f5;
 }
 
-.section3 h2 {
+.section13 h2 {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 500;
@@ -85,12 +88,12 @@
   margin: 1% 0 2% 0;
 }
 
-.experience {
-  width: 85%;
+.experience1 {
+
   margin: auto;
 }
 
-.experience h3 {
+.experience1 h3 {
   font-size: 1.5rem;
   font-weight: 500;
   color: rgb(82, 82, 82);
